@@ -1,4 +1,4 @@
-# Navidrome pour YunoHost
+# dispatch pour YunoHost
 
 [![Niveau d'intégration](https://dash.yunohost.org/integration/navidrome.svg)](https://dash.yunohost.org/appci/app/navidrome) ![](https://ci-apps.yunohost.org/ci/badges/navidrome.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/navidrome.maintain.svg)  
 [![Installer Navidrome avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=navidrome)
@@ -47,7 +47,7 @@ La musique est à stocker dans le dossier `/home/yunohost.navidrome/Music`.
 ## Liens
 
  * Signaler un bug : https://github.com/YunoHost-Apps/navidrome_ynh/issues
- * Dépôt de l'application principale : https://github.com/deluan/navidrome/
+ * Dépôt de l'application principale : https://github.com/khlieng/dispatch
  * Site web YunoHost : https://yunohost.org/
 
 ---
