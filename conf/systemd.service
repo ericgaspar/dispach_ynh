@@ -1,7 +1,6 @@
 [Unit]
 Description=dispach
 After=remote-fs.target network.target
-AssertPathExists=__CONFIG_PATH__
 
 [Install]
 WantedBy=multi-user.target
