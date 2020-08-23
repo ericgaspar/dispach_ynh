@@ -7,7 +7,7 @@
         "fr": "Serveur de musique moderne et Streamer compatibles avec Subsonic/Airsonic"
     },
     "version": "0.7~ynh1",
-    "url": "https://github.com/deluan/navidrome/",
+    "url": "https://github.com/khlieng/dispatch",
     "license": "AGPL-3.0-only",
     "maintainer": {
         "name": ""

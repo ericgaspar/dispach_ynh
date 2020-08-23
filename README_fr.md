@@ -1,7 +1,7 @@
-# dispatch pour YunoHost
+# Dispatch pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/navidrome.svg)](https://dash.yunohost.org/appci/app/navidrome) ![](https://ci-apps.yunohost.org/ci/badges/navidrome.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/navidrome.maintain.svg)  
-[![Installer Navidrome avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=navidrome)
+[![Niveau d'intégration](https://dash.yunohost.org/integration/dispatch.svg)](https://dash.yunohost.org/appci/app/dispatch) ![](https://ci-apps.yunohost.org/ci/badges/dispatch.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/dispatch.maintain.svg)  
+[![Installer Dispatch avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=dispatch)
 
 *[Read this readme in english.](./README.md)* 
 
