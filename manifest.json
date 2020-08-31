@@ -3,8 +3,8 @@
     "id": "dispatch",
     "packaging_format": 1,
     "description": {
-        "en": "Modern Music Server and Streamer compatible with Subsonic/Airsonic",
-        "fr": "Serveur de musique moderne et Streamer compatibles avec Subsonic/Airsonic"
+        "en": "Web-based IRC client in Go",
+        "fr": ""
     },
     "version": "0.7~ynh1",
     "url": "https://github.com/khlieng/dispatch",

@@ -1,36 +1,31 @@
-# Dispatchfor YunoHost
+# Dispatch for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/dispatch.svg)](https://dash.yunohost.org/appci/app/dispatch) ![](https://ci-apps.yunohost.org/ci/badges/navidrome.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/dispatch.maintain.svg)  
 [![Install Dispatch with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=dispatch)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
-> *This package allows you to install Navidrome quickly and simply on a YunoHost server.  
+> *This package allows you to install Dispatch quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
-Navidrome is an open source web-based music collection server and streamer. It gives you freedom to listen to your music collection from any browser or mobile device. It's like your personal Spotify!
 
 **Shipped version:** 0.7
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/deluan/navidrome/master/.github/screenshots/ss-desktop-player.png)
+![](https://camo.githubusercontent.com/335eb6270d56b9218d3b0fb21f3779f36604a918/68747470733a2f2f6b686c69656e672e636f6d2f64697370617463682e706e673f31)
 
 ## Demo
 
-* [Official demo](https://www.navidrome.org/demo/)
+* [Official demo](https://dispatch.khlieng.com/connect)
 
 ## Configuration
 
-You can configure Navidrome by editing this file `/var/lib/navidrome/navidrome.toml` using the [documentation](https://www.navidrome.org/docs/usage/configuration-options/).
-
-The music is to be stored in the folder `/home/yunohost.navidrome/Music`.
-
 ## Documentation
 
- * Official documentation: https://www.navidrome.org/docs/
- * YunoHost documentation: https://yunohost.org/#/app_navidrome
+ * Official documentation: 
+ * YunoHost documentation: https://yunohost.org/#/app_dispatch
 
 ## YunoHost specific features
 

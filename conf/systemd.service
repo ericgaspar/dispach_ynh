@@ -1,15 +1,16 @@
 [Unit]
-Description=dispach
+Description=Dispach
 After=remote-fs.target network.target
 
-[Install]
-WantedBy=multi-user.target
-
 [Service]
+Type=simple
 User=__APP__
 Group=__APP__
-Type=simple
 ExecStart=__FINAL_PATH__/__APP__
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
