@@ -1,15 +1,17 @@
 [Unit]
 Description=Dispach
-After=remote-fs.target network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple
 User=__APP__
-Group=__APP__
-ExecStart=__FINAL_PATH__/__APP__
-TimeoutStopSec=20
-KillMode=process
+Group=nogroup
+ExecStart=__FINAL_PATH__/bin/__APP__ -a 127.0.0.1 -p __PORT__
 Restart=on-failure
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=3
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

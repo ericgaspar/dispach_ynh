@@ -58,7 +58,7 @@ ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 ynh_script_progression --message="Configuring firewall..." --weight=0
 
 # Find an available port
-port=$(ynh_find_port --port=3000)
+port=$(ynh_find_port --port=9999)
 ynh_app_setting_set --app=$app --key=port --value=$port
 
 #=================================================
@@ -76,8 +76,11 @@ ynh_script_progression --message="Setting up source files..." --weight=4
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 
+bin_path="$final_path/bin/"
+mkdir -p "$bin_path"
+
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir=$final_path --source_id="$architecture"
+ynh_setup_source --dest_dir=$bin_path --source_id="$architecture"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -111,6 +114,7 @@ ynh_script_progression --message="Configuring a systemd service..." --weight=1
 
 ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="../conf/systemd.service"
 ynh_replace_string --match_string="__FINAL_PATH__" --replace_string="$final_path" --target_file="../conf/systemd.service"
+ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="../conf/systemd.service"
 
 ynh_add_systemd_config
 
