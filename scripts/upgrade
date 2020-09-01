@@ -90,12 +90,12 @@ ynh_system_user_create --username=$app
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=1
 
-cp ../conf/config.default.toml "$config_path/config.toml"
+cp ../conf/config.default.toml "$final_path/config.toml"
 
 # Main config File
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$config_path/config.toml"
+ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/config.toml"
 
-ynh_store_file_checksum --file="$config_path/config.toml"
+ynh_store_file_checksum --file="$final_path/config.toml"
 
 #=================================================
 # SETUP SYSTEMD
