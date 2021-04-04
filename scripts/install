@@ -75,11 +75,8 @@ ynh_script_progression --message="Setting up source files..." --weight=4
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 
-bin_path="$final_path/bin/"
-mkdir -p "$bin_path"
-
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir=$bin_path --source_id="$architecture"
+ynh_setup_source --dest_dir=$final_path --source_id="$architecture"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -133,7 +130,7 @@ ynh_systemd_action --service_name=$app --action=start --log_path=systemd
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring SSOwat..." --weight=1
+ynh_script_progression --message="Configuring permissions..." --weight=1
 
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]

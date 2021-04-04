@@ -30,6 +30,18 @@ ynh_script_progression --message="Checking version..."
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
+#=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
 ynh_script_progression --message="Backing up $app before upgrading (may take a while)..." --weight=4
@@ -50,7 +62,7 @@ ynh_abort_if_errors
 #=================================================
 ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action=stop --log_path="systemd"
+ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
 
 #=================================================
 # CREATE DEDICATED USER
@@ -58,7 +70,7 @@ ynh_systemd_action --service_name=$app --action=stop --log_path="systemd"
 ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
+ynh_system_user_create --username=$app --home_dir=$final_path
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -73,7 +85,6 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir=$final_path --source_id="$architecture"
-
 fi
 
 #=================================================
