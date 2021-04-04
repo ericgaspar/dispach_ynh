@@ -48,7 +48,6 @@ ynh_script_progression --message="Storing installation settings..." --weight=2
 
 ynh_app_setting_set --app=$app --key=domain    --value=$domain
 ynh_app_setting_set --app=$app --key=path      --value=$path_url
-ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -97,24 +96,12 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=1
 
-config_path="$final_path/.dispatch/"
-mkdir -p "$config_path"
-
-cp ../conf/config.default.toml "$config_path/config.toml"
-
-# Main config File
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$config_path/config.toml"
-
-ynh_store_file_checksum --file="$config_path/config.toml"
+ynh_add_config --template="../conf/config.default.toml" --destination="$final_path/.dispatch/config.toml"
 
 #=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=1
-
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="../conf/systemd.service"
-ynh_replace_string --match_string="__FINAL_PATH__" --replace_string="$final_path" --target_file="../conf/systemd.service"
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="../conf/systemd.service"
 
 ynh_add_systemd_config
 
@@ -151,7 +138,7 @@ ynh_script_progression --message="Configuring SSOwat..." --weight=1
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
 then
-	ynh_permission_update --permission "main" --add "visitors"
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================

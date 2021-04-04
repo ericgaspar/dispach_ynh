@@ -18,7 +18,6 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
-is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
 architecture=$(ynh_detect_arch)
@@ -51,7 +50,15 @@ ynh_abort_if_errors
 #=================================================
 ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
+ynh_systemd_action --service_name=$app --action=stop --log_path="systemd"
+
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -78,33 +85,16 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 ynh_add_nginx_config
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
-
-#=================================================
 # MODIFY A CONFIG FILE
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=1
 
-cp ../conf/config.default.toml "$final_path/config.toml"
-
-# Main config File
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/config.toml"
-
-ynh_store_file_checksum --file="$final_path/config.toml"
+ynh_add_config --template="../conf/config.default.toml" --destination="$final_path/.dispatch/config.toml"
 
 #=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=2
-
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="../conf/systemd.service"
-ynh_replace_string --match_string="__FINAL_PATH__" --replace_string="$final_path" --target_file="../conf/systemd.service"
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="../conf/systemd.service"
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
@@ -139,7 +129,7 @@ yunohost service add $app --description "Web-based IRC client in Go"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemd_action --service_name=$app --action=start --log_path=systemd
 
 #=================================================
 # RELOAD NGINX
