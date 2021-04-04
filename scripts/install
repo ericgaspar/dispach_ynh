@@ -66,7 +66,7 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 ynh_script_progression --message="Configuring system user..." --weight=1
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir=$final_path --shell=/bin/bash dispatch
+ynh_system_user_create --username=$app --home_dir=$final_path --use_shell=/bin/bash dispatch
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
