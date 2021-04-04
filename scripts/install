@@ -46,15 +46,15 @@ ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
 #=================================================
 ynh_script_progression --message="Storing installation settings..." --weight=2
 
-ynh_app_setting_set --app=$app --key=domain    --value=$domain
-ynh_app_setting_set --app=$app --key=path      --value=$path_url
+ynh_app_setting_set --app=$app --key=domain --value=$domain
+ynh_app_setting_set --app=$app --key=path --value=$path_url
 
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
 # FIND AND OPEN A PORT
 #=================================================
-ynh_script_progression --message="Configuring firewall..." --weight=0
+ynh_script_progression --message="Finding an available port..." --weight=0
 
 # Find an available port
 port=$(ynh_find_port --port=9999)
@@ -66,7 +66,7 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 ynh_script_progression --message="Configuring system user..." --weight=1
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir=$final_path
+ynh_system_user_create --username=$app --home_dir=$final_path --shell=/bin/bash dispatch
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -120,7 +120,7 @@ chown -R $app: "$final_path"
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-yunohost service add $app --description="Web-based IRC client in Go"
+yunohost service add $app --description="Web-based IRC client in Go" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -128,7 +128,7 @@ yunohost service add $app --description="Web-based IRC client in Go"
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemd_action --service_name=$app --action=start --log_path=systemd
 
 #=================================================
 # SETUP SSOWAT

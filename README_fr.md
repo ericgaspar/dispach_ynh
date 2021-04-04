@@ -25,7 +25,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 ## Documentation
 
  * Documentation officielle : 
- * Documentation YunoHost : https://yunohost.org/#/app_dispatch_fr
+ * Documentation YunoHost : https://yunohost.org/fr/app_dispatch
 
 ## Caractéristiques spécifiques YunoHost
 
@@ -42,6 +42,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 ## Liens
 
  * Signaler un bug : https://github.com/YunoHost-Apps/navidrome_ynh/issues
+  * Site de l'application : https://dispatch.khlieng.com/connect
  * Dépôt de l'application principale : https://github.com/khlieng/dispatch
  * Site web YunoHost : https://yunohost.org/
 

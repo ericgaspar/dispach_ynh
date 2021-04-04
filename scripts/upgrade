@@ -122,7 +122,7 @@ ynh_use_logrotate --non-append
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..."
 
-yunohost service add $app --description "Web-based IRC client in Go"
+yunohost service add $app --description="Web-based IRC client in Go" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
