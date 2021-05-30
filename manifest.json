@@ -30,7 +30,7 @@
                 "name": "path",
                 "type": "path",
                 "example": "/dispatch",
-                "default": "/dispatch"
+                "default": "/"
             },
             {
                 "name": "is_public",
