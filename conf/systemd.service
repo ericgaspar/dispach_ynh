@@ -7,7 +7,7 @@ After=network-online.target
 Type=simple
 User=__APP__
 Group=nogroup
-ExecStart=__FINALPATH__/dispatch 
+ExecStart=__FINALPATH__/dispatch -conf __FINALPATH__
 Restart=on-failure
 RestartSec=5
 StartLimitInterval=60s
@@ -15,4 +15,3 @@ StartLimitBurst=3
 
 [Install]
 WantedBy=default.target
-#-a 127.0.0.1 -p __PORT__
