@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 Type=simple
 User=__APP__
-Group=__APP__
-ExecStart=__FINALPATH__/dispatch -a 127.0.0.1 -p __PORT__
+Group=nogroup
+ExecStart=__FINALPATH__/dispatch 
 Restart=on-failure
 RestartSec=5
 StartLimitInterval=60s
@@ -15,3 +15,4 @@ StartLimitBurst=3
 
 [Install]
 WantedBy=default.target
+#-a 127.0.0.1 -p __PORT__
