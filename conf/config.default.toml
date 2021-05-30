@@ -13,11 +13,11 @@ verify_certificates = true
 
 # Defaults for the client connect form
 [defaults]
-name = "freenode"
-host = "chat.freenode.net"
+name = "libera"
+host = "irc.libera.chat"
 port = 6697
 channels = [
-  "#dispatch"
+  "#yunohost"
 ]
 server_password = ""
 ssl = true
